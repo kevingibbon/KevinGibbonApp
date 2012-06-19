@@ -10,4 +10,28 @@
 
 @implementation PhotoResponse
 
+@synthesize photos;
+
+-(PhotoResponse*) initWithDictonary: (NSDictionary*) dictonary {
+    self = [super init];
+	photos = [[NSMutableArray alloc] init];
+	if (dictonary != nil)
+    {
+        id nextObject;
+        NSEnumerator *enumerator = [dictonary objectEnumerator];
+        while ((nextObject = [enumerator nextObject]) != nil)
+        {
+            NSDictionary *dataDict = nextObject;
+            NSDictionary *oembedDict = [dataDict objectForKey:@"oembed"];
+            if (oembedDict != nil)
+            {
+                [photos addObject:[oembedDict objectForKey:@"url"]];
+            }
+        }
+        
+    }
+    return self;
+}
+
+
 @end

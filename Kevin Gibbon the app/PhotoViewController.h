@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RestHelper.h"
 
-@interface PhotoViewController : UIViewController
+@interface PhotoViewController : UIViewController <RestHelperDelegate>
+
+@property (strong) PhotoResponse *photoResponse;
+@property (strong) RestHelper *restHelper;
+@property (strong) NSString *socialType;
+@property (strong) NSMutableArray *images;
+- (void)restHelperDidLoad;
+@property (weak, nonatomic) IBOutlet UITableView *photoTableView;
+-(void)loadData;
 
 @end

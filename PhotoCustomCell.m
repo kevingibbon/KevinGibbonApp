@@ -9,6 +9,7 @@
 #import "PhotoCustomCell.h"
 
 @implementation PhotoCustomCell
+@synthesize imageView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

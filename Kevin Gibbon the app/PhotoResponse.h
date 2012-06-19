@@ -10,4 +10,8 @@
 
 @interface PhotoResponse : NSObject
 
+@property (strong) NSMutableArray *photos;
+
+-(PhotoResponse*) initWithDictonary: (NSDictionary*) dictonary;
+
 @end
