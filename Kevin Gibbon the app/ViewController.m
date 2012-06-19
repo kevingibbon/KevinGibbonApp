@@ -68,7 +68,7 @@
 
 - (void)changeTab:(PhotoViewController*)newTabViewController {
     [viewContainer bringSubviewToFront:newTabViewController.view];
-    [newTabViewController loadData];
+    [newTabViewController removeAndLoadData];
 }
 
 - (IBAction)instagramButtonPressed:(id)sender {

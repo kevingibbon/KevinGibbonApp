@@ -42,11 +42,11 @@
         
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)removeAndLoadData
 {
-    [super viewWillAppear:animated];
     [images removeAllObjects];
     offset = 0;
+    [self loadData];
 }
 
 - (void)loadData 

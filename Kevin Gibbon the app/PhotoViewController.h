@@ -22,6 +22,7 @@
 @property (strong) NSMutableArray *images;
 
 - (void)restHelperDidLoad;
+- (void)removeAndLoadData;
 @property (weak, nonatomic) IBOutlet UITableView *photoTableView;
 -(void)loadData;
 
