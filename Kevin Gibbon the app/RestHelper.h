@@ -18,8 +18,8 @@
 
 @property (strong) id <RestHelperDelegate> delegate;
 @property (strong) NSOperationQueue * queue;
--(NSDictionary*) getJSONDataHttp: (NSString*) accessToken;
--(void) retrievePhotos: (NSString*) socialType :(PhotoResponse*) photoResponse;
+-(NSDictionary*) getJSONDataHttp: (NSString*) accessToken : (NSNumber*) offset;
+-(void) retrievePhotos: (NSString*) socialType :(PhotoResponse*) photoResponse :(NSNumber*)offset;
 -(void) retrievePhotos: (NSArray*) array;
 
 +(NSString*) getUDID;

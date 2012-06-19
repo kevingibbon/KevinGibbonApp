@@ -10,11 +10,17 @@
 #import "RestHelper.h"
 
 @interface PhotoViewController : UIViewController <RestHelperDelegate>
+{
+    BOOL isRefreshingNewPage;
+    CGFloat lastScrollPosition;
+    int offset;
+}
 
 @property (strong) PhotoResponse *photoResponse;
 @property (strong) RestHelper *restHelper;
 @property (strong) NSString *socialType;
 @property (strong) NSMutableArray *images;
+
 - (void)restHelperDidLoad;
 @property (weak, nonatomic) IBOutlet UITableView *photoTableView;
 -(void)loadData;

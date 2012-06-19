@@ -10,7 +10,8 @@
 
 @implementation RestHelper
 
-#define SERVER_URL @"https://api.singly.com/v0/types/photos?access_token="
+#define SERVER_URL @"https://api.singly.com/v0/types/photos_feed?"
+//#define SERVER_URL @"https://api.singly.com/v0/types/photos?"
 
 @synthesize delegate;
 @synthesize queue;
@@ -21,12 +22,12 @@
 	 return self;
 }
 
--(NSDictionary*) getJSONDataHttp: (NSString*) accessToken {
+-(NSDictionary*) getJSONDataHttp: (NSString*) accessToken : (NSNumber*) offset {
 	NSError* error = nil;
 	NSURLResponse* response = nil;
 	NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"GET"];
-	NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", SERVER_URL, accessToken]];
+	NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@offset=%i&access_token=%@", SERVER_URL, [offset intValue],accessToken]];
 	[request setURL:url];
 	[request setTimeoutInterval:1200];
 	
@@ -67,6 +68,7 @@
 -(void) retrievePhotos: (NSArray*) array {
 	NSString *socialType = [array objectAtIndex:0];
 	PhotoResponse *photoResponse = [array objectAtIndex:1];
+    NSNumber *offset = [array objectAtIndex:2];
     NSString *accessToken = @"";
     if ([socialType isEqualToString:FACEBOOK])
     {
@@ -80,7 +82,7 @@
     {
         accessToken = @"vKhUIuVUPmBw5VVW4Gm9n9-Lfbc=P9m8G62Xcb4dbc938d68014bf85701b93bddcd7f3c7a9f90124f65250ad949357ae3b175c7c66ba4de91c549875868a398544d6a1407f5ffd8947803137fe556233d2ecfd6e8590170012d233c9244986936a06b28b8e43264322075c3ef9a904c11e5f9ccfaf8d9e6bde83055b11f9a36e735ab";
     }
-	NSDictionary *dictonary =  [self getJSONDataHttp:accessToken];
+     NSDictionary *dictonary =  [self getJSONDataHttp:accessToken :offset];
 	if (photoResponse != nil && ![queue isSuspended])
 	{
         __unused PhotoResponse *spr = [photoResponse initWithDictonary:dictonary];
@@ -93,8 +95,8 @@
 }
 
 
--(void) retrievePhotos: (NSString*) socialType :(PhotoResponse*) photoResponse{
-	NSArray  *myParams = [NSArray arrayWithObjects:socialType,photoResponse,nil];
+-(void) retrievePhotos: (NSString*) socialType :(PhotoResponse*) photoResponse :(NSNumber*)offset{
+	NSArray  *myParams = [NSArray arrayWithObjects:socialType,photoResponse,offset,nil];
     
     NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self
 																			selector:@selector(retrievePhotos:)
