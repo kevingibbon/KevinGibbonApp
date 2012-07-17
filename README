@@ -1,0 +1,14 @@
+KevinGibbonApp
+
+==============
+
+This is a simple app put together in a few hours to test the Singly api. Singly is a single api that connects multiple social networking services together (Facebook, Instagram, Twitter etc). 
+
+This app takes a auth id from Facebook, Instagram, Twitter and displays the photo feeds from each service. Upon clicking on each tab photos will be loaded from the requested service. The auth id is currently hardcoded to use Kevin Gibbon's services. 
+
+
+Bugs
+
+==============
+
+1. There is a limitation with the singly api to only allow a single page to be loaded. If you scroll past the first page you will notice duplicate photos. This is due to the limited us of the offset field in the Singly api.

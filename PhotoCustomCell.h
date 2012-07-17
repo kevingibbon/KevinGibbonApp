@@ -10,5 +10,6 @@
 
 @interface PhotoCustomCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong) NSNumber *index;
 
 @end

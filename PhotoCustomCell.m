@@ -10,6 +10,7 @@
 
 @implementation PhotoCustomCell
 @synthesize imageView;
+@synthesize index;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
